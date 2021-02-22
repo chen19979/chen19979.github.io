@@ -5,6 +5,32 @@
   
   <entry>
     <title></title>
+    <link href="/2021/02/21/node.js%20%E6%A8%A1%E5%9D%97%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/"/>
+    <url>/2021/02/21/node.js%20%E6%A8%A1%E5%9D%97%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/</url>
+    
+    <content type="html"><![CDATA[<h1 id="模块的加载机制"><a href="#模块的加载机制" class="headerlink" title="模块的加载机制"></a><strong>模块的加载机制</strong></h1><h3 id="内置模块的加载机制"><a href="#内置模块的加载机制" class="headerlink" title="内置模块的加载机制"></a>内置模块的加载机制</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//内置模块包括 fs http path 等</span><br><span class="hljs-comment">//引用模块的方式是 const fs = require(&#x27;fs&#x27;) </span><br><span class="hljs-comment">// 1、如果require直接引用模块 如require(&#x27;fs&#x27;) 则返回的结果是内置模块</span><br><span class="hljs-comment">// 2、如果require引用模块有路径 如require(&#x27;./fs 或../fs&#x27;) 则返回的结果是路径里面的文件</span><br><br></code></pre></td></tr></table></figure><h3 id="自定义模块的加载机制"><a href="#自定义模块的加载机制" class="headerlink" title="自定义模块的加载机制"></a>自定义模块的加载机制</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//加载机制：</span><br><span class="hljs-comment">//内置模块的引用方式是 require(&#x27;&#x27;)，里面是带有./ ../ /开头的路径，如果没有这些路径，则会被当成内置模块或第三方模块来处理</span><br></code></pre></td></tr></table></figure><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//自定义模块文件</span><br><span class="hljs-comment">//如果按照确切名没有找到该文件，则node.js会尝试带上.js .json .node 再查找</span><br></code></pre></td></tr></table></figure><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//自定义目录模块</span><br><span class="hljs-comment">//当传递一个目录标识符给 require () 方法时, 加载的顺序如下:</span><br><span class="hljs-comment">//1. 在加载的目录下查找 package.json 的文件, 并寻找 main 属性作为 require 的入口</span><br><span class="hljs-comment">//2. 上述找不到,  Node.js 将会试图加载目录下的 index.js 或 index.node 文件</span><br></code></pre></td></tr></table></figure><h3 id="第三方模块的加载机制"><a href="#第三方模块的加载机制" class="headerlink" title="第三方模块的加载机制"></a>第三方模块的加载机制</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//如果传递给 require() 的模块标识符不是一个核心模块，也没有以 &#x27;/&#x27; 、 &#x27;../&#x27; 或 &#x27;./&#x27; 开头，那么 Node.js 会从当前模块的父目录开始，尝试从它的 /node_modules 目录里加载模块。如果还是没有找到，则移动到再上一层父目录，直到文件系统的根目录。如果最后还是没有找到则报错</span><br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2021/02/21/npm%20%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/"/>
+    <url>/2021/02/21/npm%20%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/</url>
+    
+    <content type="html"><![CDATA[<h1 id="博客上传使用的相关命令"><a href="#博客上传使用的相关命令" class="headerlink" title="博客上传使用的相关命令"></a><strong>博客上传使用的相关命令</strong></h1><table><thead><tr><th>命令</th></tr></thead><tbody><tr><td>$ hexo s</td></tr><tr><td>$ hexo clean</td></tr><tr><td>$ hexo g</td></tr><tr><td>$ hexo d</td></tr><tr><td>检查一下github里面有没有上传成功</td></tr><tr><td>然后重新打开自己的博客链接就好了</td></tr></tbody></table>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
     <link href="/2021/02/09/JavaScript%E5%9F%BA%E7%A1%80%E7%AC%AC06%E5%A4%A9%E7%AC%94%E8%AE%B0/"/>
     <url>/2021/02/09/JavaScript%E5%9F%BA%E7%A1%80%E7%AC%AC06%E5%A4%A9%E7%AC%94%E8%AE%B0/</url>
     
