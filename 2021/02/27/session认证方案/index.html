@@ -172,8 +172,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-02-21 20:51" pubdate>
-        2021年2月21日 晚上
+      <time datetime="2021-02-27 16:33" pubdate>
+        2021年2月27日 下午
       </time>
     </span>
   
@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      396 字
+      279 字
     </span>
   
 
@@ -227,17 +227,11 @@
             <h1 style="display: none"></h1>
             
             <div class="markdown-body">
-              <h1 id="模块的加载机制"><a href="#模块的加载机制" class="headerlink" title="模块的加载机制"></a><strong>模块的加载机制</strong></h1><h3 id="内置模块的加载机制"><a href="#内置模块的加载机制" class="headerlink" title="内置模块的加载机制"></a>内置模块的加载机制</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//内置模块包括 fs http path 等</span><br><span class="hljs-comment">//引用模块的方式是 const fs = require(&#x27;fs&#x27;) </span><br><span class="hljs-comment">// 1、如果require直接引用模块 如require(&#x27;fs&#x27;) 则返回的结果是内置模块</span><br><span class="hljs-comment">// 2、如果require引用模块有路径 如require(&#x27;./fs 或../fs&#x27;) 则返回的结果是路径里面的文件</span><br><br></code></pre></td></tr></table></figure>
-
-
-<h3 id="自定义模块的加载机制"><a href="#自定义模块的加载机制" class="headerlink" title="自定义模块的加载机制"></a>自定义模块的加载机制</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//加载机制：</span><br><span class="hljs-comment">//内置模块的引用方式是 require(&#x27;&#x27;)，里面是带有./ ../ /开头的路径，如果没有这些路径，则会被当成内置模块或第三方模块来处理</span><br></code></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//自定义模块文件</span><br><span class="hljs-comment">//如果按照确切名没有找到该文件，则node.js会尝试带上.js .json .node 再查找</span><br></code></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//自定义目录模块</span><br><span class="hljs-comment">//当传递一个目录标识符给 require () 方法时, 加载的顺序如下:</span><br><span class="hljs-comment">//1. 在加载的目录下查找 package.json 的文件, 并寻找 main 属性作为 require 的入口</span><br><span class="hljs-comment">//2. 上述找不到,  Node.js 将会试图加载目录下的 index.js 或 index.node 文件</span><br></code></pre></td></tr></table></figure>
-
-
-<h3 id="第三方模块的加载机制"><a href="#第三方模块的加载机制" class="headerlink" title="第三方模块的加载机制"></a>第三方模块的加载机制</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//如果传递给 require() 的模块标识符不是一个核心模块，也没有以 &#x27;/&#x27; 、 &#x27;../&#x27; 或 &#x27;./&#x27; 开头，那么 Node.js 会从当前模块的父目录开始，尝试从它的 /node_modules 目录里加载模块。如果还是没有找到，则移动到再上一层父目录，直到文件系统的根目录。如果最后还是没有找到则报错</span><br></code></pre></td></tr></table></figure>
-
-
+              <h1 id=""><a href="#" class="headerlink" title="****"></a>****</h1><h2 id="Session-认证"><a href="#Session-认证" class="headerlink" title="Session 认证"></a>Session 认证</h2><h3 id="1、安装express-session插件"><a href="#1、安装express-session插件" class="headerlink" title="1、安装express-session插件"></a>1、安装express-session插件</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">npm i express-session<br></code></pre></td></tr></table></figure>
+<h3 id="2、配置express-session插件"><a href="#2、配置express-session插件" class="headerlink" title="2、配置express-session插件"></a>2、配置express-session插件</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 引入中间插件</span><br><span class="hljs-keyword">const</span> session = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express-session&#x27;</span>)<br><span class="hljs-comment">// 配置插件的参数</span><br>app.use(session(&#123;<br>  secret:<span class="hljs-string">&#x27;hello&#x27;</span>, <span class="hljs-comment">//值为任意字符</span><br>  resave:<span class="hljs-literal">false</span>,   <span class="hljs-comment">//固定写法</span><br>  saveUninitialized:<span class="hljs-literal">true</span>  <span class="hljs-comment">//固定写法</span><br>&#125;))<br></code></pre></td></tr></table></figure>
+<h3 id="3、执行session"><a href="#3、执行session" class="headerlink" title="3、执行session"></a>3、执行session</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs js">app.post(<span class="hljs-string">&#x27;/login&#x27;</span>,<span class="hljs-function">(<span class="hljs-params">req,res</span>)=&gt;</span>&#123;<br><span class="hljs-comment">//判断用户提交的信息是否正确</span><br>  <span class="hljs-keyword">if</span>(req.body.username !== <span class="hljs-string">&#x27;hh&#x27;</span> || req.body.password !== <span class="hljs-string">&#x27;123456&#x27;</span>)&#123;<br>    <span class="hljs-keyword">return</span> res.send(&#123;<br>      status:<span class="hljs-number">1</span>,<br>      message:<span class="hljs-string">&#x27;登录失败&#x27;</span><br>    &#125;)<br>    <span class="hljs-comment">// 将登录成功的信息存储到session中</span><br>    req.session.user = req.body<br>    req.session.isLogin = <span class="hljs-literal">true</span><br>    res.send(&#123;<br>      status:<span class="hljs-number">0</span>,<br>      message:<span class="hljs-string">&#x27;登录成功&#x27;</span><br>    &#125;)<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+<h3 id="4、读取session的数据"><a href="#4、读取session的数据" class="headerlink" title="4、读取session的数据"></a>4、读取session的数据</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//用户的姓名接口</span><br>app.get(<span class="hljs-string">&#x27;/username&#x27;</span>,<span class="hljs-function">(<span class="hljs-params">req,res</span>)=&gt;</span>&#123;<br><span class="hljs-comment">//判断用户是否登录成功</span><br>  <span class="hljs-keyword">if</span>(!req.session.isLogin)&#123;<br>    <span class="hljs-keyword">return</span> res.send(&#123;<br>      status:<span class="hljs-number">1</span>,<br>      message:<span class="hljs-string">&#x27;登录失败&#x27;</span><br>    &#125;)<br>    <span class="hljs-comment">// 登录成功的情况</span><br>    res.send(&#123;<br>      status:<span class="hljs-number">0</span>,<br>      message:<span class="hljs-string">&#x27;登录成功&#x27;</span>,<br>      username:req.session.user.username<br>    &#125;)<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+<h3 id="5、退出登录"><a href="#5、退出登录" class="headerlink" title="5、退出登录"></a>5、退出登录</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//退出登录</span><br>app.post(<span class="hljs-string">&#x27;/logout&#x27;</span>,<span class="hljs-function">(<span class="hljs-params">req,res</span>)=&gt;</span>&#123;<br><span class="hljs-comment">//清空客户端的session</span><br>  req.session.destroy()<br>  res.send(&#123;<br>      status:<span class="hljs-number">0</span>,<br>      message:<span class="hljs-string">&#x27;退出成功&#x27;</span>,<br>  &#125;)<br>&#125;)<br></code></pre></td></tr></table></figure>
 
             </div>
             <hr>
@@ -254,17 +248,11 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/02/25/MySQL/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile"></span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/02/21/npm%20%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/">
+                      <a href="/2021/02/25/MySQL/">
                         <span class="hidden-mobile"></span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
