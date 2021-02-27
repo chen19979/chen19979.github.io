@@ -172,8 +172,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-02-25 20:02" pubdate>
-        2021年2月25日 晚上
+      <time datetime="2021-02-27 17:54" pubdate>
+        2021年2月27日 下午
       </time>
     </span>
   
@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      326 字
+      284 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5
+      4
        分钟
     </span>
   
@@ -227,18 +227,11 @@
             <h1 style="display: none"></h1>
             
             <div class="markdown-body">
-              <h1 id=""><a href="#" class="headerlink" title="****"></a>****</h1><p>– （查询）从users表中查询所有的数据<br>– select * from users</p>
-<p>– （查询 select  ）从users表中查询指定的列<br>– select username,password from users</p>
-<p>– （增加 insert  ）向users表中插入一条数据，username 为’tony’,  password 为’123123’<br>– insert into users (username,password) values (‘qq’,’333333’)<br>– insert into users (username,password) values (‘kk’,’4’)</p>
-<p>– (报错）insert into users (id,username) values (‘10’,’ss’) </p>
-<p>– (更新  update  ）将ID为1的用户更改密码<br>– update users set password=’000000’,status=1 where id=1<br>– update users set status=1,username=’gg’ where id=2;<br>– (报错）update users set status=1,username=’gg’ where username=hh</p>
-<p>– (删除 delete  )删除表中内容<br>– delete from users where id =5;<br>– select * from users</p>
-<p>– 查询等于 =<br>– select * from users where id=3<br>– 查询大于 &gt;<br>– select * from users where id&gt;2<br>– 查询不等于 !=<br>– select * from users where id!=2<br>– 查询在什么之间 between<br>– select * from users where id between 1 and 3<br>– 查询类似 like  %hh% 首尾都有 % 就是包含<br>– select * from users where username like ‘%hh%’</p>
-<p>– 使用and  并且的关系  可以同时对多个and<br>– select * from users where status=0 and id&gt;1 and username =’hh’</p>
-<p>– 使用or  或者的关系<br>– select * from users where status=0 or id&gt;2 or username =’hh’</p>
-<p>– 升序排序(order by)   asc(可有可无)<br>– select * from users order by status asc</p>
-<p>– 降序排序(order by) desc<br>– select * from users order by id desc<br>– select * from users order by status desc<br>– select * from users where id&gt;2 order by id desc</p>
-<p>– 多重排序<br>select * from users order by status asc,password desc</p>
+              <h1 id=""><a href="#" class="headerlink" title="****"></a>****</h1><h2 id="JWT-json-web-token-认证方案"><a href="#JWT-json-web-token-认证方案" class="headerlink" title="JWT( json web token) 认证方案"></a>JWT( json web token) 认证方案</h2><h3 id="1、安装express-session插件"><a href="#1、安装express-session插件" class="headerlink" title="1、安装express-session插件"></a>1、安装express-session插件</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">npm i express-session<br></code></pre></td></tr></table></figure>
+<h3 id="2、配置express-session插件"><a href="#2、配置express-session插件" class="headerlink" title="2、配置express-session插件"></a>2、配置express-session插件</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 引入中间插件</span><br><span class="hljs-keyword">const</span> session = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express-session&#x27;</span>)<br><span class="hljs-comment">// 配置插件的参数</span><br>app.use(session(&#123;<br>  secret:<span class="hljs-string">&#x27;hello&#x27;</span>, <span class="hljs-comment">//值为任意字符</span><br>  resave:<span class="hljs-literal">false</span>,   <span class="hljs-comment">//固定写法</span><br>  saveUninitialized:<span class="hljs-literal">true</span>  <span class="hljs-comment">//固定写法</span><br>&#125;))<br></code></pre></td></tr></table></figure>
+<h3 id="3、执行session"><a href="#3、执行session" class="headerlink" title="3、执行session"></a>3、执行session</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs js">app.post(<span class="hljs-string">&#x27;/login&#x27;</span>,<span class="hljs-function">(<span class="hljs-params">req,res</span>)=&gt;</span>&#123;<br><span class="hljs-comment">//判断用户提交的信息是否正确</span><br>  <span class="hljs-keyword">if</span>(req.body.username !== <span class="hljs-string">&#x27;hh&#x27;</span> || req.body.password !== <span class="hljs-string">&#x27;123456&#x27;</span>)&#123;<br>    <span class="hljs-keyword">return</span> res.send(&#123;<br>      status:<span class="hljs-number">1</span>,<br>      message:<span class="hljs-string">&#x27;登录失败&#x27;</span><br>    &#125;)<br>    <span class="hljs-comment">// 将登录成功的信息存储到session中</span><br>    req.session.user = req.body<br>    req.session.isLogin = <span class="hljs-literal">true</span><br>    res.send(&#123;<br>      status:<span class="hljs-number">0</span>,<br>      message:<span class="hljs-string">&#x27;登录成功&#x27;</span><br>    &#125;)<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+<h3 id="4、读取session的数据"><a href="#4、读取session的数据" class="headerlink" title="4、读取session的数据"></a>4、读取session的数据</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//用户的姓名接口</span><br>app.get(<span class="hljs-string">&#x27;/username&#x27;</span>,<span class="hljs-function">(<span class="hljs-params">req,res</span>)=&gt;</span>&#123;<br><span class="hljs-comment">//判断用户是否登录成功</span><br>  <span class="hljs-keyword">if</span>(!req.session.isLogin)&#123;<br>    <span class="hljs-keyword">return</span> res.send(&#123;<br>      status:<span class="hljs-number">1</span>,<br>      message:<span class="hljs-string">&#x27;登录失败&#x27;</span><br>    &#125;)<br>    <span class="hljs-comment">// 登录成功的情况</span><br>    res.send(&#123;<br>      status:<span class="hljs-number">0</span>,<br>      message:<span class="hljs-string">&#x27;登录成功&#x27;</span>,<br>      username:req.session.user.username<br>    &#125;)<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+<h3 id="5、退出登录"><a href="#5、退出登录" class="headerlink" title="5、退出登录"></a>5、退出登录</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//退出登录</span><br>app.post(<span class="hljs-string">&#x27;/logout&#x27;</span>,<span class="hljs-function">(<span class="hljs-params">req,res</span>)=&gt;</span>&#123;<br><span class="hljs-comment">//清空客户端的session</span><br>  req.session.destroy()<br>  res.send(&#123;<br>      status:<span class="hljs-number">0</span>,<br>      message:<span class="hljs-string">&#x27;退出成功&#x27;</span>,<br>  &#125;)<br>&#125;)<br></code></pre></td></tr></table></figure>
 
             </div>
             <hr>
@@ -255,17 +248,11 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/02/27/session%E8%AE%A4%E8%AF%81%E6%96%B9%E6%A1%88/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile"></span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/02/21/node.js%20%E6%A8%A1%E5%9D%97%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/">
+                      <a href="/2021/02/25/MySQL/">
                         <span class="hidden-mobile"></span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
